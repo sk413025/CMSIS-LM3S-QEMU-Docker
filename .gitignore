@@ -1,0 +1,21 @@
+# 編譯產物 (Build artifacts)
+examples/*/gcc/*.o
+examples/*/gcc/*.d
+examples/*/gcc/*.axf
+examples/*/gcc/*.bin
+
+# 臨時檔案 (Temporary files)
+*~
+*.swp
+*.swo
+
+# IDE 檔案 (IDE files)
+.vscode/
+.idea/
+
+# Docker volumes
+.docker/
+
+# 系統檔案 (System files)
+.DS_Store
+Thumbs.db
