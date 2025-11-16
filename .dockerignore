@@ -1,0 +1,22 @@
+# Git 相關
+.git
+.gitignore
+
+# 編譯產物
+examples/*/gcc/*.o
+examples/*/gcc/*.d
+examples/*/gcc/*.axf
+examples/*/gcc/*.bin
+
+# 文檔
+*.md
+README.md
+
+# 臨時檔案
+*~
+*.swp
+*.swo
+
+# IDE 檔案
+.vscode
+.idea

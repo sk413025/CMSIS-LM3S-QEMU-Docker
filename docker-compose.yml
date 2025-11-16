@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # QEMU ARM 執行環境
+  qemu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cmsis-lm3s-qemu:latest
+    container_name: cmsis_lm3s_qemu
+    volumes:
+      # 掛載專案目錄為唯讀
+      - ./:/work:ro
+    working_dir: /work
+    # 預設不執行，等待手動指令
+    command: bash
+    stdin_open: true
+    tty: true
+
+  # UART Hello World 範例
+  uart-hello:
+    image: cmsis-lm3s-qemu:latest
+    volumes:
+      - ./:/work:ro
+    working_dir: /work/examples/uart_hello_world/gcc
+    command: >
+      timeout 3 qemu-system-arm
+        -M lm3s6965evb
+        -nographic
+        -kernel uart_hello_world.bin
+
+  # FIR 濾波器範例
+  fir-filter:
+    image: cmsis-lm3s-qemu:latest
+    volumes:
+      - ./:/work:ro
+    working_dir: /work/examples/arm_fir_example/gcc
+    command: >
+      timeout 3 qemu-system-arm
+        -M lm3s6965evb
+        -nographic
+        -kernel arm_fir_example_f32.bin
